@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Floré — Sladice v kozarcu za gostince | by Oui Chef</title>
+<meta name="description" content="Floré: ročno pripravljene premium sladice v kozarcu za kavarne, bare, restavracije in dogodke. Pripravljeno za postrežbo, brez dodatnega dela v kuhinji.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..600;1,9..144,400..600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241a12;
+    --mocha:#8c7256;
+    --mocha-dark:#6f5a41;
+    --cream:#f6efe6;
+    --paper:#fffdf9;
+    --berry:#7c2a1e;
+    --berry-light:#a5382a;
+    --line:#e4d9c9;
+    --white:#ffffff;
+    --shadow: 0 20px 50px -20px rgba(36,26,18,0.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    line-height:1.08;
+  }
+  .eyebrow{
+    font-family:'Work Sans', sans-serif;
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--mocha-dark);
+  }
+  .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 6vw;
+  }
+  @media(min-width:1300px){ .wrap{padding:0 40px;} }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--berry);
+    outline-offset:3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ============ NAV ============ */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:20px 6vw;
+    display:flex; align-items:center; justify-content:space-between;
+    background:var(--paper);
+    box-shadow:0 1px 0 rgba(36,26,18,0.08);
+    transition:padding .4s ease, box-shadow .4s ease;
+  }
+  header.scrolled{
+    padding:14px 6vw;
+    box-shadow:0 2px 24px rgba(36,26,18,0.1);
+  }
+  header .logo-img{ height:26px; width:auto; }
+  header nav{ display:flex; align-items:center; gap:36px; }
+  header nav a.nav-link{
+    font-size:0.86rem; font-weight:500; letter-spacing:0.01em;
+    color:var(--ink);
+    position:relative;
+    transition:color .3s ease;
+  }
+  header nav a.nav-link::after{
+    content:''; position:absolute; left:0; right:0; bottom:-6px; height:1px;
+    background:currentColor; transform:scaleX(0); transform-origin:right;
+    transition:transform .3s ease;
+  }
+  header nav a.nav-link:hover::after{ transform:scaleX(1); transform-origin:left; }
+  .nav-links{ display:flex; align-items:center; gap:32px; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:13px 26px;
+    font-size:0.85rem; font-weight:600; letter-spacing:0.03em;
+    border-radius:2px;
+    cursor:pointer; border:1px solid transparent;
+    transition:all .3s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{ background:var(--berry); color:var(--white); }
+  .btn-primary:hover{ background:var(--berry-light); transform:translateY(-1px); }
+  .btn-line{ border-color:currentColor; color:var(--white); background:transparent; }
+  .btn-line:hover{ background:rgba(255,255,255,0.12); }
+  .btn-dark{ background:var(--ink); color:var(--cream); }
+  .btn-dark:hover{ background:#3a2a1c; }
+
+  .burger{ display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; z-index:200; }
+  .burger span{ width:24px; height:2px; background:var(--ink); transition:.3s; }
+  .burger.open span{ background:var(--ink); }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-end;
+    color:var(--white);
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background:url('assets/hero.jpg') center 30%/cover no-repeat;
+    transform:scale(1.06);
+  }
+  .hero-bg::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,14,9,0.55) 0%, rgba(20,14,9,0.25) 35%, rgba(20,14,9,0.15) 55%, rgba(20,14,9,0.78) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    width:100%;
+    padding:0 6vw clamp(36px,7vh,90px);
+  }
+  .hero-eyebrow{
+    display:flex; align-items:center; gap:14px;
+    font-size:0.72rem; font-weight:600; letter-spacing:0.24em; text-transform:uppercase;
+    color:var(--cream); opacity:0.85; margin-bottom:clamp(12px,3vh,22px);
+  }
+  .hero-eyebrow .dot{ width:5px; height:5px; background:var(--berry-light); border-radius:50%; display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.3rem, 4vw + 2.2vh, 5.6rem);
+    max-width:16ch;
+    color:var(--white);
+    margin-bottom:clamp(12px,3vh,22px);
+  }
+  .hero h1 em{ font-style:italic; color:var(--cream); }
+  .hero p.lede{
+    max-width:46ch;
+    font-size:clamp(1rem, 1.6vw, 1.18rem);
+    color:rgba(255,253,249,0.88);
+    margin-bottom:clamp(20px,4vh,36px);
+    font-weight:400;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:clamp(28px,5vh,56px); }
+  .hero-meta{
+    display:flex; gap:0; flex-wrap:wrap;
+    border-top:1px solid rgba(255,253,249,0.25);
+    padding-top:clamp(14px,3vh,22px);
+    max-width:640px;
+  }
+  .hero-meta div{
+    padding-right:56px; margin-right:56px;
+    border-right:1px solid rgba(255,253,249,0.2);
+    font-size:0.86rem; color:rgba(255,253,249,0.75);
+  }
+  .hero-meta div:last-child{ border-right:none; margin-right:0; padding-right:0; }
+  .hero-meta strong{ display:block; font-family:'Fraunces',serif; font-size:1.3rem; font-weight:500; color:var(--white); }
+
+  .scroll-cue{
+    position:absolute; right:6vw; bottom:36px; z-index:2;
+    writing-mode:vertical-rl;
+    font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+    color:rgba(255,253,249,0.7);
+    display:flex; align-items:center; gap:10px;
+  }
+  .scroll-cue::after{ content:''; width:1px; height:46px; background:rgba(255,253,249,0.5); }
+  @media(max-width:720px){ .scroll-cue{ display:none; } }
+
+  /* ============ SECTION shells ============ */
+  section{ position:relative; }
+  .section-pad{ padding:120px 0; }
+  @media(max-width:800px){ .section-pad{ padding:80px 0; } }
+  .bg-cream{ background:var(--cream); }
+  .bg-ink{ background:var(--ink); color:var(--cream); }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(2rem, 4vw, 2.9rem); }
+
+  /* ============ STORY ============ */
+  .story-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:80px; align-items:center;
+  }
+  @media(max-width:900px){ .story-grid{ grid-template-columns:1fr; gap:44px; } }
+  .story-img-wrap{ position:relative; }
+  .story-img-wrap img{
+    width:100%; aspect-ratio:4/5; object-fit:cover;
+    box-shadow:var(--shadow);
+  }
+  .story-badge{
+    position:absolute; bottom:-30px; left:-30px;
+    width:118px; height:118px;
+  }
+  @media(max-width:520px){ .story-badge{ width:84px; height:84px; bottom:-18px; left:-14px; } }
+  .story-text p{ font-size:1.05rem; color:#4a3b2c; margin-bottom:20px; max-width:52ch; }
+  blockquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:clamp(1.3rem, 2.4vw, 1.7rem);
+    color:var(--ink);
+    line-height:1.4;
+    margin:30px 0 30px;
+    padding-left:26px;
+    border-left:2px solid var(--berry);
+  }
+
+  /* ============ FLAVORS ============ */
+  .flavor-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+    background:var(--line);
+  }
+  @media(max-width:900px){ .flavor-grid{ grid-template-columns:repeat(2,1fr); } }
+  .flavor-card{
+    background:var(--paper);
+    position:relative;
+    overflow:hidden;
+    aspect-ratio:3/4.1;
+    display:flex; align-items:flex-end;
+  }
+  .flavor-card img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    transition:transform .7s cubic-bezier(.2,.8,.2,1);
+  }
+  .flavor-card::before{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,14,9,0) 40%, rgba(20,14,9,0.82) 100%);
+    z-index:1;
+  }
+  .flavor-card:hover img{ transform:scale(1.06); }
+  .flavor-info{ position:relative; z-index:2; padding:26px 22px; color:var(--white); }
+  .flavor-num{ font-size:0.72rem; letter-spacing:0.18em; color:rgba(255,253,249,0.7); margin-bottom:8px; display:block;}
+  .flavor-info h3{ font-size:1.35rem; margin-bottom:6px; color:var(--white); }
+  .flavor-info p{ font-size:0.85rem; color:rgba(255,253,249,0.8); max-width:24ch; }
+
+  /* ============ WHY (benefits) ============ */
+  .why-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:44px;
+  }
+  @media(max-width:900px){ .why-grid{ grid-template-columns:repeat(2,1fr); gap:36px 28px; } }
+  @media(max-width:520px){ .why-grid{ grid-template-columns:1fr; } }
+  .why-item .why-icon{
+    width:46px; height:46px; margin-bottom:22px;
+    color:var(--berry);
+  }
+  .why-item h3{ font-size:1.16rem; margin-bottom:10px; font-weight:500; }
+  .why-item p{ font-size:0.92rem; color:#5c4c3b; max-width:30ch; }
+
+  /* ============ POSITIONING (statement) ============ */
+  .statement{
+    position:relative;
+    min-height:78vh;
+    display:flex; align-items:center;
+    color:var(--white);
+    overflow:hidden;
+  }
+  .statement-bg{
+    position:absolute; inset:0;
+    background:url('assets/lineup-wide.jpg') center 42%/cover no-repeat;
+  }
+  .statement-bg::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(100deg, rgba(20,14,9,0.86) 0%, rgba(20,14,9,0.55) 48%, rgba(20,14,9,0.2) 100%);
+  }
+  .statement-content{ position:relative; z-index:2; max-width:640px; }
+  .statement h2{
+    font-size:clamp(2.2rem, 5.2vw, 3.6rem);
+    margin-bottom:26px;
+  }
+  .statement h2 em{ font-style:italic; color:var(--cream); }
+  .statement p{ font-size:1.05rem; color:rgba(255,253,249,0.85); max-width:44ch; margin-bottom:14px; }
+  .statement .note{
+    display:inline-flex; align-items:center; gap:10px;
+    margin-top:26px; padding:10px 18px;
+    border:1px solid rgba(255,253,249,0.35);
+    font-size:0.8rem; letter-spacing:0.04em; color:var(--cream);
+  }
+
+  /* ============ OCCASIONS ============ */
+  .occ-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); }
+  @media(max-width:720px){ .occ-grid{ grid-template-columns:1fr; } }
+  .occ-item{
+    background:var(--paper); padding:44px 40px;
+    display:flex; gap:24px; align-items:flex-start;
+  }
+  .occ-thumb{ width:76px; height:76px; flex-shrink:0; overflow:hidden; border-radius:2px; }
+  .occ-thumb img{ width:100%; height:100%; object-fit:cover; }
+  .occ-item h3{ font-size:1.12rem; margin-bottom:6px; font-weight:500; }
+  .occ-item p{ font-size:0.9rem; color:#5c4c3b; }
+
+  /* ============ FUTURE strip ============ */
+  .future-strip{
+    background:var(--mocha); color:var(--white);
+    padding:34px 0;
+  }
+  .future-inner{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .future-inner p{ font-size:1rem; }
+  .future-inner strong{ font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:1.15rem; }
+
+  /* ============ CONTACT ============ */
+  .contact-grid{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px;
+  }
+  @media(max-width:900px){ .contact-grid{ grid-template-columns:1fr; gap:50px; } }
+  .contact-info h2{ font-size:clamp(2rem,4vw,2.7rem); color:var(--white); margin-bottom:18px; }
+  .contact-info p{ color:rgba(246,239,230,0.8); max-width:38ch; margin-bottom:34px; font-size:1.02rem; }
+  .contact-person{
+    display:flex; align-items:center; gap:16px;
+    padding-top:26px; border-top:1px solid rgba(246,239,230,0.18);
+    margin-bottom:26px;
+  }
+  .contact-person .initial{
+    width:52px; height:52px; border-radius:50%;
+    background:var(--berry); color:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:1.3rem;
+  }
+  .contact-person .name{ font-weight:600; font-size:0.98rem; color:var(--white); }
+  .contact-person .role{ font-size:0.82rem; color:rgba(246,239,230,0.65); }
+  .contact-list{ display:flex; flex-direction:column; gap:14px; }
+  .contact-list a, .contact-list span{
+    font-size:0.95rem; color:rgba(246,239,230,0.85);
+    display:flex; align-items:center; gap:10px;
+  }
+  .contact-list a:hover{ color:var(--white); }
+
+  form{ display:flex; flex-direction:column; gap:18px; }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media(max-width:560px){ .form-row{ grid-template-columns:1fr; } }
+  label{
+    font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:rgba(246,239,230,0.6); margin-bottom:8px; display:block;
+  }
+  input, textarea, select{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid rgba(246,239,230,0.3);
+    color:var(--white);
+    font-family:'Work Sans', sans-serif;
+    font-size:1rem;
+    padding:10px 2px;
+    transition:border-color .3s ease;
+  }
+  select option{ color:var(--ink); }
+  input::placeholder, textarea::placeholder{ color:rgba(246,239,230,0.35); }
+  input:focus, textarea:focus, select:focus{ border-color:var(--cream); outline:none; }
+  textarea{ resize:vertical; min-height:100px; }
+  .form-foot{ display:flex; align-items:center; justify-content:space-between; gap:20px; margin-top:8px; flex-wrap:wrap; }
+  .form-note{ font-size:0.78rem; color:rgba(246,239,230,0.5); max-width:34ch; }
+  #formStatus{ font-size:0.85rem; margin-top:6px; }
+
+  /* ============ FOOTER ============ */
+  footer{ background:var(--ink); color:rgba(246,239,230,0.55); padding:36px 0; border-top:1px solid rgba(246,239,230,0.1); }
+  .footer-inner{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; font-size:0.82rem; }
+  .footer-inner img{ height:18px; opacity:0.8; }
+  .footer-links{ display:flex; gap:24px; }
+  .footer-links a:hover{ color:var(--cream); }
+
+  /* ============ MOBILE NAV ============ */
+  @media(max-width:880px){
+    .nav-links{
+      position:fixed; inset:0; z-index:150;
+      background:var(--paper);
+      flex-direction:column; justify-content:center; align-items:flex-start;
+      gap:26px; padding:0 10vw;
+      transform:translateX(100%);
+      transition:transform .45s cubic-bezier(.2,.8,.2,1);
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a.nav-link{ color:var(--ink) !important; font-size:1.5rem; font-family:'Fraunces',serif; }
+    .nav-links a.nav-link::after{ display:none; }
+    .nav-links .btn{ margin-top:10px; }
+    .burger{ display:flex; }
+    header nav.desktop-only{ display:none; }
+  }
+  .header-actions{
+    position:absolute; right:6vw; top:50%; transform:translateY(-50%);
+    display:flex; align-items:center; gap:14px;
+  }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <a href="#top" aria-label="Floré – domov">
+    <img class="logo-img" id="navLogo" src="assets/wordmark_ink.png" alt="Floré">
+  </a>
+  <nav class="nav-links" id="navLinks">
+    <a class="nav-link" href="#zgodba">Zgodba</a>
+    <a class="nav-link" href="#okusi">Okusi</a>
+    <a class="nav-link" href="#gostinci">Za gostince</a>
+    <a class="nav-link" href="#kontakt">Kontakt</a>
+    <a class="btn btn-primary" href="#kontakt">Naroči vzorce</a>
+  </nav>
+  <div class="header-actions">
+    <button class="burger" id="burger" aria-label="Odpri meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="dot"></span> Floré by Oui Chef — linija sladic za gostince</div>
+    <h1>Sladica, ki se<br><em>proda sama.</em></h1>
+    <p class="lede">Ročno pripravljene premium sladice v kozarcu za kavarne, bare, restavracije in dogodke. Pripravljeno za postrežbo — brez dodatne mise en place in brez izgube časa v kuhinji.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn btn-primary">Povprašaj za vzorce</a>
+      <a href="#okusi" class="btn btn-line">Poglej okuse</a>
+    </div>
+    <div class="hero-meta">
+      <div><strong>4</strong>okusi v redni ponudbi</div>
+      <div><strong>100%</strong>pripravljeno za vitrino ali takeaway</div>
+    </div>
+  </div>
+  <div class="scroll-cue">Podrsaj navzdol</div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="section-pad bg-cream" id="zgodba">
+  <div class="wrap">
+    <div class="story-grid reveal">
+      <div class="story-img-wrap">
+        <img src="assets/story.jpg" alt="Floré sladice v kozarcu, flatlay s kavo in čokolado">
+        <img class="story-badge" src="assets/badge_mocha.png" alt="">
+      </div>
+      <div class="story-text">
+        <div class="eyebrow">Nova sladka zgodba</div>
+        <h2 style="margin-bottom:22px;">Začeli smo novo pot.</h2>
+        <p>Floré je linija sladic, ki nastaja iz naše gostinske izkušnje: okus mora biti konkreten, izgled mora delovati premium, produkt pa mora biti uporaben v realnem obratu.</p>
+        <p>Ideja je preprosta — gostinec dobi sladico, ki je že pripravljena za prodajo ali postrežbo. Brez dodatne mise en place, brez kompliciranja, brez izgube časa v kuhinji.</p>
+        <blockquote>“Sladica, ki izgleda dobro, se enostavno proda — in jo gost z veseljem fotografira.”</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLAVORS ================= -->
+<section class="section-pad" id="okusi">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Trenutna linija</div>
+      <h2>Štirje prvi okusi.</h2>
+    </div>
+  </div>
+  <div class="flavor-grid reveal">
+    <div class="flavor-card">
+      <img src="assets/jar-tiramisu.jpg" alt="Floré Tiramisu v kozarcu">
+      <div class="flavor-info">
+        <span class="flavor-num">01</span>
+        <h3>Tiramisu</h3>
+        <p>Klasičen, kremast, kavni.</p>
+      </div>
+    </div>
+    <div class="flavor-card">
+      <img src="assets/jar-tiramisu-jagoda.jpg" alt="Floré Tiramisu jagoda v kozarcu">
+      <div class="flavor-info">
+        <span class="flavor-num">02</span>
+        <h3>Tiramisu jagoda</h3>
+        <p>Svežina jagode + tiramisu.</p>
+      </div>
+    </div>
+    <div class="flavor-card">
+      <img src="assets/jar-torta-cokolada.jpg" alt="Floré Torta čokolada v kozarcu">
+      <div class="flavor-info">
+        <span class="flavor-num">03</span>
+        <h3>Torta čokolada</h3>
+        <p>Bogata čokoladna sladica.</p>
+      </div>
+    </div>
+    <div class="flavor-card">
+      <img src="assets/jar-torta-jagoda.jpg" alt="Floré Torta jagoda v kozarcu">
+      <div class="flavor-info">
+        <span class="flavor-num">04</span>
+        <h3>Torta jagoda</h3>
+        <p>Lahka torta z jagodo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY / FOR GOSTINCE ================= -->
+<section class="section-pad bg-cream" id="gostinci">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Za gostinske obrate</div>
+      <h2>Zakaj Floré v ponudbi?</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-item">
+        <svg class="why-icon" viewBox="0 0 48 48" fill="none"><path d="M10 38V16l14-8 14 8v22" stroke="currentColor" stroke-width="1.6"/><path d="M18 38V24h12v14" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h3>Brez dodatnega dela v kuhinji</h3>
+        <p>Sladica je pripravljena za prodajo in postrežbo — takoj po dostavi.</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-icon" viewBox="0 0 48 48" fill="none"><rect x="12" y="10" width="24" height="28" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M17 18h14M17 24h14M17 30h8" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h3>Stalen izgled in porcija</h3>
+        <p>Vsak kozarec je vizualno privlačen in enostaven za obračun.</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="14" width="32" height="22" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M8 22h32" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h3>Primerna za vitrino ali takeaway</h3>
+        <p>Dobro deluje tudi za lokale z manj kuhinjskega časa in prostora.</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-icon" viewBox="0 0 48 48" fill="none"><path d="M24 6l4.7 9.6 10.6 1.5-7.7 7.5 1.8 10.6L24 30l-9.4 4.9 1.8-10.6-7.7-7.5 10.6-1.5L24 6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <h3>Premium občutek pri gostu</h3>
+        <p>Embalaža in sloji naredijo močan prvi vtis — še pred prvim grižljajem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POSITIONING STATEMENT ================= -->
+<section class="statement">
+  <div class="statement-bg"></div>
+  <div class="wrap statement-content reveal">
+    <div class="eyebrow" style="color:var(--cream); opacity:0.8;">Pozicioniranje</div>
+    <h2>Majhna sladica.<br><em>Velik vtis.</em></h2>
+    <p>Floré je zasnovan kot izdelek, ki ga gost opazi takoj: sloji, barve in embalaža delujejo elegantno že pred prvim grižljajem. Najbolje deluje kot dodatek ob kavi, kot sladica po kosilu ali večerji, kot hitra premium izbira iz vitrine.</p>
+    <div class="note">Primeren za redno ponudbo ali sezonske akcije</div>
+  </div>
+</section>
+
+<!-- ================= OCCASIONS ================= -->
+<section class="section-pad" id="priloznosti">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Okusi in priložnosti</div>
+      <h2>Kaj ponuditi gostu.</h2>
+    </div>
+  </div>
+  <div class="occ-grid reveal">
+    <div class="occ-item">
+      <div class="occ-thumb"><img src="assets/jar-tiramisu.jpg" alt=""></div>
+      <div>
+        <h3>Tiramisu</h3>
+        <p>Za kavarne, restavracije, kosila in večerje.</p>
+      </div>
+    </div>
+    <div class="occ-item">
+      <div class="occ-thumb"><img src="assets/jar-tiramisu-jagoda.jpg" alt=""></div>
+      <div>
+        <h3>Tiramisu jagoda</h3>
+        <p>Lažja, sveža izbira za poletje.</p>
+      </div>
+    </div>
+    <div class="occ-item">
+      <div class="occ-thumb"><img src="assets/jar-torta-cokolada.jpg" alt=""></div>
+      <div>
+        <h3>Torta čokolada</h3>
+        <p>Za goste, ki iščejo res bogato sladico.</p>
+      </div>
+    </div>
+    <div class="occ-item">
+      <div class="occ-thumb"><img src="assets/jar-torta-jagoda.jpg" alt=""></div>
+      <div>
+        <h3>Torta jagoda</h3>
+        <p>Nežna, sadna tortica v kozarcu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FUTURE STRIP ================= -->
+<div class="future-strip">
+  <div class="wrap future-inner">
+    <p>Trenutno na voljo izključno za gostinske obrate.</p>
+    <strong>Kmalu na voljo tudi za posamezen nakup.</strong>
+  </div>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<section class="section-pad bg-ink" id="kontakt">
+  <div class="wrap contact-grid">
+    <div class="contact-info reveal">
+      <div class="eyebrow" style="color:var(--mocha);">Kontakt</div>
+      <h2>Sladka ponudba, pripravljena za tvoj lokal.</h2>
+      <p>Če se vam zdi zanimivo, z veseljem prinesemo vzorce in predstavimo celotno ponudbo osebno — brez zaveze.</p>
+      <div class="contact-person">
+        <div class="initial">TP</div>
+        <div>
+          <div class="name">Tamara Plečko</div>
+          <div class="role">Floré, by Oui Chef</div>
+        </div>
+      </div>
+      <div class="contact-list">
+        <a href="mailto:ouichef.co@gmail.com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
+          ouichef.co@gmail.com
+        </a>
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Slovenija
+        </span>
+      </div>
+    </div>
+    <div class="reveal">
+      <form id="floreForm">
+        <div class="form-row">
+          <div>
+            <label for="ime">Ime in priimek</label>
+            <input type="text" id="ime" name="ime" placeholder="Ime Priimek" required>
+          </div>
+          <div>
+            <label for="lokal">Naziv lokala</label>
+            <input type="text" id="lokal" name="lokal" placeholder="npr. Kavarna Center">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="email">E-pošta</label>
+            <input type="email" id="email" name="email" placeholder="ti@lokal.si" required>
+          </div>
+          <div>
+            <label for="telefon">Telefon</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="040 000 000">
+          </div>
+        </div>
+        <div>
+          <label for="sporocilo">Sporočilo</label>
+          <textarea id="sporocilo" name="sporocilo" placeholder="Povej nam nekaj o svojem lokalu in kdaj vam ustreza obisk z vzorci."></textarea>
+        </div>
+        <div class="form-foot">
+          <p class="form-note">Odgovorimo v roku 1–2 delovnih dni.</p>
+          <button type="submit" class="btn btn-primary">Pošlji povpraševanje</button>
+        </div>
+        <div id="formStatus"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <img src="assets/wordmark_cream.png" alt="Floré">
+    <div class="footer-links">
+      <a href="#zgodba">Zgodba</a>
+      <a href="#okusi">Okusi</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <span>&copy; <span id="year"></span> Floré by Oui Chef</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // header scroll state (subtle shrink + shadow only — header stays white always)
+  const header = document.getElementById('siteHeader');
+  function onScroll(){
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // mobile nav
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+  }));
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  revealEls.forEach(el => io.observe(el));
+
+  // contact form -> PHP handler (send-kontakt.php na strežniku)
+  const form = document.getElementById('floreForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.textContent = 'Pošiljam...';
+    status.style.color = 'rgba(246,239,230,0.7)';
+    const data = new FormData(form);
+    fetch('send-kontakt.php', { method:'POST', body:data })
+      .then(res => res.ok ? res.text() : Promise.reject())
+      .then(() => {
+        status.textContent = 'Hvala! Povpraševanje je bilo poslano — oglasimo se v roku 1–2 delovnih dni.';
+        status.style.color = '#c9a98f';
+        form.reset();
+      })
+      .catch(() => {
+        status.textContent = 'Prišlo je do napake. Piši nam neposredno na ouichef.co@gmail.com.';
+        status.style.color = '#d98f7f';
+      });
+  });
+</script>
+
+</body>
+</html>
