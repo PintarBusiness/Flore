@@ -382,6 +382,56 @@
   .order-price-total strong{ font-size:1.5rem; }
   .order-summary .btn{ width:100%; margin-top:4px; }
 
+  .order-customer-form{
+    margin-top:22px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .order-form-title{
+    font-family:'Fraunces',serif;
+    font-size:1.3rem;
+    color:var(--ink);
+  }
+  .order-form-note{
+    font-size:0.78rem;
+    color:#7a6a58;
+    margin-top:-6px;
+  }
+  .order-form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .order-customer-form label{
+    color:#7a6a58;
+    font-size:0.68rem;
+    margin-bottom:5px;
+  }
+  .order-customer-form input,
+  .order-customer-form textarea{
+    color:var(--ink);
+    border-bottom:1px solid #cfc1ae;
+    padding:8px 2px;
+    font-size:0.9rem;
+  }
+  .order-customer-form input::placeholder,
+  .order-customer-form textarea::placeholder{ color:#aa9b89; }
+  .order-customer-form input:focus,
+  .order-customer-form textarea:focus{ border-color:var(--berry); }
+  .order-customer-form textarea{ min-height:72px; }
+  #orderFormStatus{
+    font-size:0.82rem;
+    line-height:1.45;
+  }
+  #orderFormStatus.ok{ color:var(--mocha-dark); font-weight:600; }
+  #orderFormStatus.error{ color:#b23a2a; }
+  @media(max-width:560px){
+    .order-form-row{ grid-template-columns:1fr; }
+  }
+
   /* ============ FUTURE strip ============ */
   .future-strip{
     background:var(--mocha); color:var(--white);
@@ -529,8 +579,7 @@
   <div class="wrap">
     <div class="story-grid reveal">
       <div class="story-img-wrap">
-        <img src="assets/story.jpg" alt="Floré sladice v kozarcu, flatlay s kavo in čokolado">
-        <img class="story-badge" src="assets/badge_mocha.png" alt="">
+        <img src="assets/story.png" alt="Floré sladice v kozarcu, flatlay s kavo in čokolado">
       </div>
       <div class="story-text">
         <div class="eyebrow">Nova sladka zgodba</div>
@@ -569,19 +618,19 @@
       </div>
     </div>
     <div class="flavor-card">
-      <img src="assets/jar-torta-cokolada.jpg" alt="Floré Torta čokolada v kozarcu">
+      <img src="assets/cokolada.png" alt="Floré Tiramisu čokolada v kozarcu">
       <div class="flavor-info">
         <span class="flavor-num">03</span>
-        <h3>Torta čokolada</h3>
-        <p>Bogata čokoladna sladica.</p>
+        <h3>Tiramisu čokolada</h3>
+        <p>Bogata čokoladna Tiramisu sladica.</p>
       </div>
     </div>
     <div class="flavor-card">
-      <img src="assets/jar-torta-jagoda.jpg" alt="Floré Torta jagoda v kozarcu">
+      <img src="assets/pistacija.png" alt="Floré Tiramisu pistacija v kozarcu">
       <div class="flavor-info">
         <span class="flavor-num">04</span>
-        <h3>Torta jagoda</h3>
-        <p>Lahka torta z jagodo.</p>
+        <h3>Tiramisu pistacija</h3>
+        <p>Kremast Tiramisu s pistacijo.</p>
       </div>
     </div>
   </div>
@@ -654,17 +703,17 @@
       </div>
     </div>
     <div class="occ-item">
-      <div class="occ-thumb"><img src="assets/jar-torta-cokolada.jpg" alt=""></div>
+      <div class="occ-thumb"><img src="assets/cokolada.png" alt=""></div>
       <div>
-        <h3>Torta čokolada</h3>
-        <p>Za goste, ki iščejo res bogato sladico.</p>
+        <h3>Tiramisu čokolada</h3>
+        <p>Za goste, ki iščejo bogat čokoladni Tiramisu.</p>
       </div>
     </div>
     <div class="occ-item">
-      <div class="occ-thumb"><img src="assets/jar-torta-jagoda.jpg" alt=""></div>
+      <div class="occ-thumb"><img src="assets/pistacija.png" alt=""></div>
       <div>
-        <h3>Torta jagoda</h3>
-        <p>Nežna, sadna tortica v kozarcu.</p>
+        <h3>Tiramisu pistacija</h3>
+        <p>Nežen pistacijev Tiramisu v kozarcu.</p>
       </div>
     </div>
   </div>
@@ -683,7 +732,7 @@
       <div class="offer-head">
         <span class="eyebrow" style="color:rgba(246,239,230,0.7);">Ponudba 1 — za prvo naročilo</span>
         <h3>Testni paket</h3>
-        <p>24 sladic: 6× Tiramisu, 6× Tiramisu jagoda, 6× Torta jagoda in 6× Torta čokolada. Začnimo z manjšim testnim naročilom in pustimo, da odziv gostov pokaže potencial izdelka.</p>
+        <p>24 sladic: 6× Tiramisu, 6× Tiramisu jagoda, 6× Tiramisu pistacija in 6× Tiramisu čokolada. Začnimo z manjšim testnim naročilom in pustimo, da odziv gostov pokaže potencial izdelka.</p>
       </div>
       <div class="offer-price">
         <div class="price-tag">
@@ -729,18 +778,18 @@
               <button type="button" class="step-btn" data-action="inc" aria-label="Povečaj">+</button>
             </div>
           </div>
-          <div class="order-row" data-flavor="Torta čokolada" data-price="3.90">
-            <img src="assets/jar-torta-cokolada.jpg" alt="">
-            <div class="order-row-name">Torta čokolada<span class="order-row-price">3,90&nbsp;€ / kos <em>· gostu 5,90&nbsp;€</em></span></div>
+          <div class="order-row" data-flavor="Tiramisu čokolada" data-price="3.90">
+            <img src="assets/cokolada.png" alt="">
+            <div class="order-row-name">Tiramisu čokolada<span class="order-row-price">3,90&nbsp;€ / kos <em>· gostu 5,90&nbsp;€</em></span></div>
             <div class="stepper">
               <button type="button" class="step-btn" data-action="dec" aria-label="Zmanjšaj">–</button>
               <span class="step-val" data-val>0</span>
               <button type="button" class="step-btn" data-action="inc" aria-label="Povečaj">+</button>
             </div>
           </div>
-          <div class="order-row" data-flavor="Torta jagoda" data-price="3.50">
-            <img src="assets/jar-torta-jagoda.jpg" alt="">
-            <div class="order-row-name">Torta jagoda<span class="order-row-price">3,50&nbsp;€ / kos <em>· gostu 5,90&nbsp;€</em></span></div>
+          <div class="order-row" data-flavor="Tiramisu pistacija" data-price="3.50">
+            <img src="assets/pistacija.png" alt="">
+            <div class="order-row-name">Tiramisu pistacija<span class="order-row-price">3,50&nbsp;€ / kos <em>· gostu 5,90&nbsp;€</em></span></div>
             <div class="stepper">
               <button type="button" class="step-btn" data-action="dec" aria-label="Zmanjšaj">–</button>
               <span class="step-val" data-val>0</span>
@@ -763,7 +812,44 @@
             <span>Skupna cena (brez DDV)</span>
             <strong id="orderPriceTotal">0,00&nbsp;€</strong>
           </div>
-          <button class="btn btn-primary" id="orderSubmitBtn" type="button">Pošlji naročilo</button>
+          <form id="orderForm" class="order-customer-form" novalidate>
+            <div class="order-form-title">Podatki za oddajo naročila</div>
+            <p class="order-form-note">Podatki spodaj so samo za naročilo. Kontaktni obrazec na dnu strani je ločen.</p>
+
+            <div class="order-form-row">
+              <div>
+                <label for="narocilo_ime">Ime in priimek</label>
+                <input type="text" id="narocilo_ime" name="ime" placeholder="Ime Priimek" autocomplete="name" required>
+              </div>
+              <div>
+                <label for="narocilo_lokal">Naziv lokala</label>
+                <input type="text" id="narocilo_lokal" name="lokal" placeholder="npr. Kavarna Center" autocomplete="organization" required>
+              </div>
+            </div>
+
+            <div class="order-form-row">
+              <div>
+                <label for="narocilo_email">E-pošta</label>
+                <input type="email" id="narocilo_email" name="email" placeholder="ti@lokal.si" autocomplete="email" required>
+              </div>
+              <div>
+                <label for="narocilo_telefon">Telefon</label>
+                <input type="tel" id="narocilo_telefon" name="telefon" placeholder="040 000 000" autocomplete="tel" required>
+              </div>
+            </div>
+
+            <div>
+              <label for="narocilo_opomba">Opomba k naročilu</label>
+              <textarea id="narocilo_opomba" name="opomba" placeholder="Npr. želeni termin dostave, posebna navodila ..."></textarea>
+            </div>
+
+            <input type="hidden" name="narocilo" id="narociloData">
+            <input type="hidden" name="skupaj_kosov" id="narociloTotal">
+            <input type="hidden" name="tip_narocila" id="tipNarocila">
+            <input type="hidden" name="cena_brez_ddv" id="narociloCena">
+            <button class="btn btn-primary" id="orderSubmitBtn" type="submit">Pošlji naročilo</button>
+            <div id="orderFormStatus" aria-live="polite"></div>
+          </form>
         </div>
       </div>
     </div>
@@ -965,24 +1051,82 @@
     document.querySelector('.order-builder').scrollIntoView({behavior:'smooth', block:'center'});
   });
 
-  document.getElementById('orderSubmitBtn').addEventListener('click', () => {
+  const orderForm = document.getElementById('orderForm');
+  const orderFormStatus = document.getElementById('orderFormStatus');
+  const narociloData = document.getElementById('narociloData');
+  const narociloTotal = document.getElementById('narociloTotal');
+  const tipNarocila = document.getElementById('tipNarocila');
+  const narociloCena = document.getElementById('narociloCena');
+
+  function getOrderData(){
     const total = orderTotal();
-    if(total < ORDER_MIN){
-      orderHint.classList.remove('ok');
-      orderHint.style.color = '#b23a2a';
-      orderHint.textContent = `Minimalno naročilo je ${ORDER_MIN} kozarčkov (trenutno: ${total}).`;
-      return;
-    }
     const discount = discountFor(total);
     const priceTotal = isStarterPreset
       ? STARTER_PACK_PRICE
       : Object.entries(orderQty).reduce((sum, [flavor, qty]) => sum + qty * Math.max(0, orderPrices[flavor] - discount), 0);
-    const lines = Object.entries(orderQty).filter(([,v]) => v > 0).map(([k,v]) => `${k}: ${v}×`).join('\n');
-    const summary = `Naročilo (min. ${ORDER_MIN} kos):\n${lines}\nSkupaj: ${total} kozarčkov\nOcena cene (brez DDV): ${eur(priceTotal)}`;
-    const msgField = document.getElementById('sporocilo');
-    msgField.value = summary;
-    document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
-    setTimeout(() => document.getElementById('ime').focus(), 650);
+
+    const lines = Object.entries(orderQty)
+      .filter(([, qty]) => qty > 0)
+      .map(([flavor, qty]) => ({ okus: flavor, kolicina: qty }));
+
+    return { total, discount, priceTotal, lines };
+  }
+
+  orderForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = getOrderData();
+
+    if(data.total < ORDER_MIN){
+      orderHint.classList.remove('ok');
+      orderHint.style.color = '#b23a2a';
+      orderHint.textContent = `Minimalno naročilo je ${ORDER_MIN} kozarčkov (trenutno: ${data.total}).`;
+      document.querySelector('.order-builder').scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+
+    if(!orderForm.checkValidity()){
+      orderForm.reportValidity();
+      return;
+    }
+
+    narociloData.value = JSON.stringify(data.lines);
+    narociloTotal.value = data.total;
+    tipNarocila.value = isStarterPreset ? 'Testni paket' : 'Naročilo po meri';
+    narociloCena.value = data.priceTotal.toFixed(2);
+
+    orderFormStatus.className = '';
+    orderFormStatus.textContent = 'Pošiljam naročilo...';
+
+    const formData = new FormData(orderForm);
+
+    try {
+      const res = await fetch('send-narocilo.php', {
+        method: 'POST',
+        body: formData
+      });
+
+      const text = await res.text();
+
+      if(!res.ok || text.trim() !== 'OK'){
+        throw new Error(text || 'Napaka pri pošiljanju.');
+      }
+
+      orderFormStatus.className = 'ok';
+      orderFormStatus.textContent = 'Naročilo je bilo uspešno poslano. Hvala!';
+      orderForm.reset();
+
+      Object.keys(orderQty).forEach(flavor => {
+        orderQty[flavor] = 0;
+        const row = document.querySelector(`.order-row[data-flavor="${CSS.escape(flavor)}"]`);
+        if(row) row.querySelector('[data-val]').textContent = '0';
+      });
+      isStarterPreset = false;
+      updateOrderSummary();
+    } catch(err) {
+      orderFormStatus.className = 'error';
+      orderFormStatus.textContent = 'Prišlo je do napake pri oddaji naročila. Piši nam neposredno na ouichef.co@gmail.com.';
+    }
   });
 
   // contact form -> PHP handler (send-kontakt.php na strežniku)
