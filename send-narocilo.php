@@ -84,7 +84,7 @@ if ($totalQty >= 96) {
 
 /*
  * Testni paket je veljaven samo, če vsebuje točno 6 kosov vsakega okusa.
- * Njegova cena je 72,00 € brez DDV.
+ * Njegova cena je 80,00 € brez DDV.
  */
 $isStarter =
     $totalQty === 24 &&
@@ -114,7 +114,7 @@ if ($isStarter) {
 }
 
 $priceTotal = $isStarter
-    ? 72.00
+    ? 80.00
     : array_reduce($cleanItems, function ($sum, $item) use ($discount) {
         return $sum + ($item['kolicina'] * max(0, $item['cena'] - $discount));
     }, 0.00);
