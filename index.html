@@ -131,7 +131,7 @@
   }
   .hero-bg{
     position:absolute; inset:0;
-    background:url('assets/hero.jpg') center 30%/cover no-repeat;
+    background:url('assets/hero.png') center 30%/cover no-repeat;
     transform:scale(1.04);
     filter:brightness(0.82) saturate(0.92);
   }
@@ -594,7 +594,7 @@
   <div class="wrap">
     <div class="story-grid reveal">
       <div class="story-img-wrap">
-        <img src="assets/story.png" alt="Floré sladice v kozarcu, flatlay s kavo in čokolado">
+        <img src="assets/story.jpeg" alt="Floré sladice v kozarcu, flatlay s kavo in čokolado">
       </div>
       <div class="story-text">
         <div class="eyebrow">Nova sladka zgodba</div>
@@ -793,18 +793,18 @@
               <button type="button" class="step-btn" data-action="inc" aria-label="Povečaj">+</button>
             </div>
           </div>
-          <div class="order-row" data-flavor="Tiramisu čokolada" data-price="3.90">
+          <div class="order-row" data-flavor="Tiramisu čokolada" data-price="3.70">
             <img src="assets/cokolada.png" alt="">
-            <div class="order-row-name">Tiramisu čokolada<span class="order-row-price">3,90&nbsp;€ / kos <em>· gostu 5,90&nbsp;€</em></span></div>
+            <div class="order-row-name">Tiramisu čokolada<span class="order-row-price">3,70&nbsp;€ / kos <em>· gostu 5,90&nbsp;€</em></span></div>
             <div class="stepper">
               <button type="button" class="step-btn" data-action="dec" aria-label="Zmanjšaj">–</button>
               <span class="step-val" data-val>0</span>
               <button type="button" class="step-btn" data-action="inc" aria-label="Povečaj">+</button>
             </div>
           </div>
-          <div class="order-row" data-flavor="Tiramisu pistacija" data-price="3.50">
+          <div class="order-row" data-flavor="Tiramisu pistacija" data-price="3.90">
             <img src="assets/pistacija.png" alt="">
-            <div class="order-row-name">Tiramisu pistacija<span class="order-row-price">3,50&nbsp;€ / kos <em>· gostu 5,90&nbsp;€</em></span></div>
+            <div class="order-row-name">Tiramisu pistacija<span class="order-row-price">3,90&nbsp;€ / kos <em>· gostu 5,90&nbsp;€</em></span></div>
             <div class="stepper">
               <button type="button" class="step-btn" data-action="dec" aria-label="Zmanjšaj">–</button>
               <span class="step-val" data-val>0</span>
@@ -894,13 +894,9 @@
         </div>
       </div>
       <div class="contact-list">
-        <a href="mailto:ouichef.co@gmail.com">
+        <a href="mailto:info@flore.si">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
-          ouichef.co@gmail.com
-        </a>
-        <a href="tel:+38651222557">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg>
-          051 222 557
+          info@flore.si
         </a>
         <span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -1156,7 +1152,7 @@
       updateOrderSummary();
     } catch(err) {
       orderFormStatus.className = 'error';
-      orderFormStatus.textContent = 'Prišlo je do napake pri oddaji naročila. Piši nam neposredno na ouichef.co@gmail.com.';
+      orderFormStatus.textContent = 'Prišlo je do napake pri oddaji naročila. Piši nam neposredno na info@flore.si.';
     }
   });
 
@@ -1176,7 +1172,7 @@
         form.reset();
       })
       .catch(() => {
-        status.textContent = 'Prišlo je do napake. Piši nam neposredno na ouichef.co@gmail.com.';
+        status.textContent = 'Prišlo je do napake. Piši nam neposredno na info@flore.si.';
         status.style.color = '#d98f7f';
       });
   });

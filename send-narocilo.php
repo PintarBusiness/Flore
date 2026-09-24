@@ -2,7 +2,7 @@
 // Floré – oddaja naročila gostincev
 header('Content-Type: text/plain; charset=utf-8');
 
-$to = "ouichef.co@gmail.com";
+$to = "info@flore.si";
 
 $ime       = isset($_POST['ime']) ? trim($_POST['ime']) : '';
 $lokal     = isset($_POST['lokal']) ? trim($_POST['lokal']) : '';
@@ -40,8 +40,8 @@ if (!is_array($items) || empty($items)) {
 $prices = [
     'Tiramisu' => 2.90,
     'Tiramisu jagoda' => 3.50,
-    'Tiramisu čokolada' => 3.90,
-    'Tiramisu pistacija' => 3.50,
+    'Tiramisu čokolada' => 3.70,
+    'Tiramisu pistacija' => 3.90,
 ];
 
 $totalQty = 0;
@@ -142,7 +142,7 @@ if ($opomba !== '') {
     $body .= "\nOpomba:\n$opomba\n";
 }
 
-$headers  = "From: Floré spletna stran <no-reply@flore.si>\r\n";
+$headers  = "From: Floré spletna stran <info@flore.si>\r\n";
 $headers .= "Reply-To: $ime <$email>\r\n";
 $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
 
@@ -152,4 +152,3 @@ if (mail($to, $subject, $body, $headers)) {
     http_response_code(500);
     echo "Napaka pri pošiljanju.";
 }
-?>

@@ -2,7 +2,7 @@
 // Floré – povpraševanje gostincev
 header('Content-Type: text/plain; charset=utf-8');
 
-$to = "ouichef.co@gmail.com";
+$to = "info@flore.si";
 
 $ime      = isset($_POST['ime']) ? trim($_POST['ime']) : '';
 $lokal    = isset($_POST['lokal']) ? trim($_POST['lokal']) : '';
@@ -31,7 +31,7 @@ $body .= "E-pošta: $email\n";
 $body .= "Telefon: " . ($telefon !== '' ? $telefon : '-') . "\n";
 $body .= "Sporočilo:\n" . ($sporocilo !== '' ? $sporocilo : '-') . "\n";
 
-$headers = "From: Floré spletna stran <no-reply@flore.si>\r\n";
+$headers = "From: Floré spletna stran <info@flore.si>\r\n";
 $headers .= "Reply-To: $ime <$email>\r\n";
 $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
 
